@@ -404,7 +404,7 @@ async function claim_manually() {
                     </div>
                   </div>
                 </div>
-                <div className="connect-wallet text-center">
+                <div className="connect-wallet text-center d-flex align-items-center justify-content-center">
                 {connected ? (
                   <a href="#" className="btn btn-blue fs-18 rounded-pill">
                     {" "}
