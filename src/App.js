@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import Web3 from "web3";
 import Web3Modal from "web3modal";
 import swal from "sweetalert";
+import WalletConnectProvider from "@walletconnect/web3-provider";
+
 import { contract_address, contract_abi, speedy_nodes } from "./config.js"
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
@@ -47,7 +49,22 @@ const [walletstatus, set_walletstatus] = useState("Connect Wallet");
 async function connect_wallet() {
     if (Web3.givenProvider) {
         const providerOptions = {
-            /* See Provider Options Section */
+          walletconnect: {
+            package: WalletConnectProvider, // required
+            options: {
+              infuraId: "https://mainnet.infura.io/v3/3ca1583421a74069b07075f209879afb" // required
+            }
+          },
+          coinbasewallet: {
+            package: CoinbaseWalletSDK, // Required
+            options: {
+              appName: "FlyGuyz", // Required
+              infuraId: "https://mainnet.infura.io/v3/3ca1583421a74069b07075f209879afb", // Required
+              rpc: "", // Optional if `infuraId` is provided; otherwise it's required
+              chainId: 1, // Optional. It defaults to 1 if not provided
+              darkMode: false // Optional. Use dark theme, defaults to false
+            }
+          }
         };
 
         const web3Modal = new Web3Modal({
